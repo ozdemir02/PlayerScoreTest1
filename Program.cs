@@ -1,43 +1,50 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace PlayerScoreTest
 {
+    class Player
+    {
+        public int Score = 100;
+    }
+
     class Program
     {
-        public static int playerScore = 100;
-        private static bool isRunning = true;
 
         static void Main(string[] args)
         {
+            Player player = new Player();
+            bool isRunning = true;
+
+
+            Console.WriteLine("Velkommen til Score Test!");
             Console.WriteLine("Tryk på tastatur for at ændre score:");
             Console.WriteLine("  [A] Tilføj 10 point");
             Console.WriteLine("  [S] Fjern 10 point");
             Console.WriteLine("  [Q] Afslut");
-            Console.WriteLine($"Nuværende score: {playerScore}");
+            Console.WriteLine($"Nuværende score: {player.Score}");
 
             while (isRunning)
             {
-                // Tjekker om der er tastetryk
                 if (Console.KeyAvailable)
                 {
                     var key = Console.ReadKey(true).Key;
                     switch (key)
                     {
                         case ConsoleKey.A:
-                            playerScore += 10;
-                            Console.WriteLine($"Score: {playerScore} (+10)");
+                            player.Score += 10;
+                            Console.WriteLine($"Score: {player.Score} (+10)");
                             break;
                         case ConsoleKey.S:
-                            playerScore -= 10;
-                            Console.WriteLine($"Score: {playerScore} (-10)");
+                            player.Score -= 10;
+                            Console.WriteLine($"Score: {player.Score} (-10)");
                             break;
                         case ConsoleKey.Q:
                             isRunning = false;
                             break;
                     }
                 }
+
                 Thread.Sleep(100);
             }
 
